@@ -13,6 +13,14 @@ $headers[] = "Reply-To: <{$from}>";
 $headers[] = "Subject: {$subject}";
 $headers[] = "X-Mailer: PHP/".phpversion();
 
-mail($to, $subject, $message);
+if(mail($to, $subject, $message)) {
+    $message = "Email send succefully. We will get back to you as soon as possible";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    echo "<script>setTimeout(function () {window.location.href = 'contact.php'; },100);</script>";
+} else {
+    $message = "Something went wrong. Please try agan later";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    echo "<script>setTimeout(function () {window.location.href = 'contact.php'; },100);</script>";
+}
 
 die;
